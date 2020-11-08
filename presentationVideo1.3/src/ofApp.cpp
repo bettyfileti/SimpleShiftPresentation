@@ -117,7 +117,7 @@ void ofApp::setup(){
     presFrameHeight = camHeight/2.5;
     
     // set the presSizeCount to control tab between sizes
-    presSizeCount = 0;
+    presSizeCount = -1;
     
     
     vidGrabber.setVerbose(true);
@@ -206,39 +206,43 @@ void ofApp::keyPressed  (int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    
+    //Cycle through preso size / using up and down arrows
+    if (key == OF_KEY_DOWN){
+        presSizeCount = presSizeCount + 1;
 
+        //VIDEO IN FRONT FUNCTIONALITY IS ACCESSIBLE BY CHANGING THE 2 HERE TO 3
+        if (presSizeCount > 2) {
+            presSizeCount = -1;}
+    }
+
+    if (key == OF_KEY_UP){
+        presSizeCount = presSizeCount-1;
+
+        if (presSizeCount < -1){
+            presSizeCount = 2;}
+
+        }
+    
+    
+    
+    //START: Split Number Cycle
 //    //Cycle through preso size / using up and down arrows
 //    if (key == OF_KEY_DOWN){
 //        presSizeCount = presSizeCount + 1;
 //
-//        //VIDEO IN FRONT FUNCTIONALITY IS ACCESSIBLE BY CHANGING THE 2 HERE TO 3
-//        if (presSizeCount > 3) {
+//        if (presSizeCount > 1) {
 //            presSizeCount = 0;}
 //    }
 //
 //    if (key == OF_KEY_UP){
 //        presSizeCount = presSizeCount-1;
 //
-//        if (presSizeCount < 0){
-//            presSizeCount = 2;}
+//        if (presSizeCount < -1){
+//            presSizeCount = 0;}
 //
 //        }
-    
-    //Cycle through preso size / using up and down arrows
-    if (key == OF_KEY_DOWN){
-        presSizeCount = presSizeCount + 1;
-       
-        if (presSizeCount > 1) {
-            presSizeCount = 0;}
-    }
-    
-    if (key == OF_KEY_UP){
-        presSizeCount = presSizeCount-1;
-        
-        if (presSizeCount < -1){
-            presSizeCount = 0;}
-    
-        }
+    //END: Split Number Cycle
     
     if (key == OF_KEY_TAB){
         
